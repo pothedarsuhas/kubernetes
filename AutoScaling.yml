@@ -1,0 +1,11 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: autoscaler
+spec:
+  scaleTargetRef:
+    kind: Deployment  # can have replication controller, deployments,replicationset but not daemonsets
+    name: nginx
+  minReplicas: 3
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80

@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-pod
+  labels:
+    name: Redis-Pod
+spec:
+  containers:
+  - name: redis
+    image: redis
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+      - name: redis-storage
+        mountPath: /data/redis
+  volumes:
+    - name: redis-storage
+
+
+      # configMap:
+      # name: log-config
+      # items:
+      # - key: log_level
+      #   path: log_level
+
+      # gitRepo:
+      #   repository: "<git clone url>"
+      #   revision: <revision of that repository>
+
+      # emptyDir:
+      #   {}
+
+
+      # hostPath:     # this is for the host path
+      #   path: /tmp/ContainerData
+      #   type: Directory # this is optional
+
+

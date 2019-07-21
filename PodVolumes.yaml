@@ -1,0 +1,32 @@
+# this is not complete
+# it does not work
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+  labels:
+    name: pod-volume
+spec:
+  containers:
+  - name: test
+    image: busybox
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+    - name: config-vol
+      mountPath: /etc/config
+    ports:
+      - containerPort: 5234
+  volumes:
+  - name: config-volume
+    configMap:
+      name: log-config
+      items:
+      - key: log_level
+        path: log_level
+    
+
+

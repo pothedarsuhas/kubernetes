@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: declarative-pod
+spec:
+  containers:
+  - name: declarative-pod-container
+    image: nginx
+    env:
+      - name: OPENSTACK
+        value: matrix
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    lifecycle:
+      postStart:
+        exec:
+          command: [ "/bin/sh", "-c", "echo hello from post start handler > /usr/share/msg"]
+      preStop:
+        exec:
+          command: ["usr/sbin/nginx", "-s", "quit"]
+  nodeSelector:
+    disktype: "ssd"
