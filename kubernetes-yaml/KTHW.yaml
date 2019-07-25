@@ -1,0 +1,6 @@
+sudo mv kubernetes.default.svc.cluster.local /etc/nginx/sites-available/kubernetes.default.svc.cluster.local
+
+
+sudo systemctl daemon-reload
+sudo systemctl enable kube-scheduler
+sudo systemctl start kube-scheduler
